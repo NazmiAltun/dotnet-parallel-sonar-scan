@@ -1,0 +1,41 @@
+name: Parallel Sonarscanner for dotnet
+description: Github action that runs dotnet sonar scanning in parallel with the tests jobs
+author: Nazmi Altun
+branding:
+  icon: zoom-in
+  color: blue
+inputs:
+  sonar-token:
+    description: 'Sonar token that is created by sonarcloud/sonarqube to pass scanning result to the sonarcloud/sonarqube instance'
+    required: true
+  coverage-solution-root-path:
+    description: 'Source file path in the coverage result should match to the solution path on current environment.To replace it, this path should be set.'
+    required: true
+    default: '/app'
+  verbose:
+    description: 'Enables verbose flag for sonar scanner'
+    required: true
+    default: 'false'
+  sonar-host-url:
+    description: 'URL of the sonarqube instance'
+    required: true
+    default: 'https://sonarcloud.io'
+  dotnet-build-command:
+    description: 'dotnet build command to be executed'
+    required: true
+    default: 'dotnet build -v q -nologo --configuration Release'
+  project-key:
+    description: 'Sonarcloud/Sonarqube project key.Default is {repo.owner}_{repo.name} if not set'
+    required: false
+  organization:
+    description: 'Sonarcloud/Sonarqube organization name.Default is {repo.owner} if not set'
+    required: false
+  project-name:
+    description: 'Sonarcloud/Sonarqube project name.Default is lower-case {repo} if not set'
+    required: false
+  test-result-artifacts:
+    description: 'Artifact names of test results that are going to be downloaded. Multiple artifact names should be separated with a comma'
+    required: false
+runs:
+  using: node12
+  main: compiled/index.js

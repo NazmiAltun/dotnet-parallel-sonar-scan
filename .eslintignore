@@ -1,0 +1,9 @@
+.eslintrc.js
+dist/
+node_modules/
+coverage
+*.lock
+*.yml
+*.md
+*.log
+compiled/

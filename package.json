@@ -1,0 +1,46 @@
+{
+  "name": "dotnet-parallel-sonar-scan",
+  "description": "Github action that runs dotnet sonar scanning in parallel with the tests jobs",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "tsc --noEmit && eslint --fix \"**\"",
+    "format": "prettier -c --write .",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "build": "tsc --p tsconfig-build.json",
+    "compile": "ncc build dist/index.js --out compiled --license licenses.txt",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NazmiAltun/dotnet-parallel-sonar-scan.git"
+  },
+  "author": "Nazmi Altun <nazmialtun@windowslive.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "@vercel/ncc": "^0.33.3",
+    "eslint": "^7.27.0",
+    "eslint-plugin-github": "^4.1.3",
+    "jest": "^26.0.1",
+    "jest-extended": "^0.11.5",
+    "prettier": "^2.3.0",
+    "semantic-release": "^19.0.2",
+    "ts-node": "^10.5.0"
+  },
+  "dependencies": {
+    "@actions/artifact": "^0.5.1",
+    "@actions/cache": "^1.0.9",
+    "@actions/core": "^1.3.0",
+    "@actions/github": "^5.0.0",
+    "@actions/tool-cache": "^1.6.1",
+    "ts-jest": "^26.0.0",
+    "typescript": "4.4.4"
+  },
+  "version": "1.1.10"
+}
