@@ -25,13 +25,13 @@ inputs:
     required: true
     default: 'dotnet build -v q -nologo --configuration Release'
   project-key:
-    description: 'Sonarcloud/Sonarqube project key.Default is {repo.owner}_{repo.name} if not set'
+    description: 'Sonarcloud/Sonarqube project key.Default is {context.repo.owner}_{context.repo.name} if not set'
     required: false
   organization:
-    description: 'Sonarcloud/Sonarqube organization name.Default is {repo.owner} if not set'
+    description: 'Sonarcloud/Sonarqube organization name.Default is {context.repo.owner} if not set'
     required: false
   project-name:
-    description: 'Sonarcloud/Sonarqube project name.Default is lower-case {repo} if not set'
+    description: 'Sonarcloud/Sonarqube project name.Default is {context.repo.repo.toLowerCase()} if not set'
     required: false
   test-result-artifacts:
     description: 'Artifact names of test results that are going to be downloaded. Multiple artifact names should be separated with a comma'
