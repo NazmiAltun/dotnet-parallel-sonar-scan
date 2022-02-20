@@ -30,8 +30,8 @@ See [action.yml](action.yml) and [Sample Repo](https://github.com/NazmiAltun/dot
 **sonar-host-url**: URL of the sonar instance .Default is *https://sonarcloud.io*
 **dotnet-build-command**: To build the solution. Default is *dotnet build -v q -nologo --configuration Release*
 **project-key**: Sonar project key. Default is *{context.repo.owner}_{context.repo.name}* if not set.
-**project-name**: Sonar project name. Default is *context.repo.repo.toLowerCase()* if not set.
-**organization**: Sonar organization name. Default is *context.repo.owner* if not set.
+**project-name**: Sonar project name. Default is *context.repo.repo* if not set.
+**organization**: Sonar organization name. Default is *context.repo.owner.toLowerCase()* if not set.
 **test-result-artifacts**: Artifact names of test results that are going to be downloaded. Multiple artifact names should be separated with a comma(,).
 
 ## TODO 

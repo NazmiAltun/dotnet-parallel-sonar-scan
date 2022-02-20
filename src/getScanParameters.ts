@@ -8,7 +8,7 @@ const getScanParameters = (): ScanParameters => {
   let projectName = getInput('project-name');
 
   if (projectKey === '') {
-    projectKey = `${context.repo.owner}_${context.repo.repo.toLowerCase()}`;
+    projectKey = `${context.repo.owner}_${context.repo.repo}`;
   }
 
   if (organization === '') {
@@ -16,7 +16,7 @@ const getScanParameters = (): ScanParameters => {
   }
 
   if (projectName === '') {
-    projectName = context.repo.repo.toLowerCase();
+    projectName = context.repo.repo;
   }
 
   return {
