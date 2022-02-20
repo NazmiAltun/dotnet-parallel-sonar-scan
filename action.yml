@@ -1,5 +1,5 @@
 name: Parallel Sonarscanner for dotnet
-description: Github action that runs dotnet sonar scanning in parallel with the tests jobs
+description: Github action that runs dotnet sonar scanner  in parallel with the tests jobs
 author: Nazmi Altun
 branding:
   icon: zoom-in

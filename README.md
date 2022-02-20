@@ -26,7 +26,7 @@ See [action.yml](action.yml) and [Sample Repo](https://github.com/NazmiAltun/dot
 
 ## Action Parameters 
 
-**verbose**: To run sonar scanner in verbose mode (logs are too chatty and the action works slow). Default is *'false'*.
+**verbose**: To run sonar scanner in verbose mode (in verbose mode logs are too chatty and the action works slow due to heavy output). Default is *'false'*.
 **sonar-host-url**: URL of the sonar instance .Default is *https://sonarcloud.io*
 **dotnet-build-command**: To build the solution. Default is *dotnet build -v q -nologo --configuration Release*
 **project-key**: Sonar project key. Default is *{context.repo.owner}_{context.repo.name}* if not set.
@@ -37,6 +37,7 @@ See [action.yml](action.yml) and [Sample Repo](https://github.com/NazmiAltun/dot
 ## TODO 
 - Add parameter to allow installing previous versions of dotnet-sonarscanner. (Currently it only installs the latest version)
 - Detect coverage-solution-root-path rather than getting it via parameters.
+- Extract hard-coded constant maxRetry and retryDurationInSecond values to action parameters 
 
 # License
 
