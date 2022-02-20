@@ -4,7 +4,7 @@ import { create } from '@actions/artifact';
 import delay from './utils/delay';
 import { info } from '@actions/core';
 
-const maxRetry = 200;
+const maxRetry = 500;
 const retryDurationInSecond = 3;
 const artifactClient = create();
 
