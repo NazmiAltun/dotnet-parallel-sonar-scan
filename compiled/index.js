@@ -126,13 +126,13 @@ const getScanParameters = () => {
     let organization = (0, core_1.getInput)('organization');
     let projectName = (0, core_1.getInput)('project-name');
     if (projectKey === '') {
-        projectKey = `${github_1.context.repo.owner}_${github_1.context.repo.repo.toLowerCase()}`;
+        projectKey = `${github_1.context.repo.owner}_${github_1.context.repo.repo}`;
     }
     if (organization === '') {
         organization = github_1.context.repo.owner.toLowerCase();
     }
     if (projectName === '') {
-        projectName = github_1.context.repo.repo.toLowerCase();
+        projectName = github_1.context.repo.repo;
     }
     return {
         projectKey,

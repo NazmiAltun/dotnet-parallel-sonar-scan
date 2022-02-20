@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/compare/v1.0.1...v1.0.2) (2022-02-20)
+
+
+### Bug Fixes
+
+* Default project key and projectname ([5bc063a](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/commit/5bc063a9ba20c67016a85a432ff306039245978c))
+
 ## [1.0.1](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/compare/v1.0.0...v1.0.1) (2022-02-20)
 
 
