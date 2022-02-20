@@ -64,7 +64,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const artifact_1 = __nccwpck_require__(2605);
 const delay_1 = __nccwpck_require__(9339);
 const core_1 = __nccwpck_require__(2186);
-const maxRetry = 200;
+const maxRetry = 500;
 const retryDurationInSecond = 3;
 const artifactClient = (0, artifact_1.create)();
 const downloadArtifact = async (artifactName, scanParameters) => {
