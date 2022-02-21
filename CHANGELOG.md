@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/compare/v1.0.2...v1.1.0) (2022-02-21)
+
+
+### Features
+
+* Extra parameters added to improve ([a67d2b8](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/commit/a67d2b8e21f3f3ba135b6b7a24f057ed70206395))
+
 ## [1.0.2](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/compare/v1.0.1...v1.0.2) (2022-02-20)
 
 

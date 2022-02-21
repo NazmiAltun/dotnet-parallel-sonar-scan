@@ -14,8 +14,8 @@ const buildBeginCommand = (scanParameters) => {
         `-n:${scanParameters.projectName} ` +
         `-d:sonar.host.url=${scanParameters.sonarHostUrl}  ` +
         `-d:sonar.login=${scanParameters.sonarToken} ` +
-        `-d:sonar.cs.opencover.reportsPaths=${scanParameters.testResultsPath}/**/*.xml ` +
-        `-d:sonar.cs.vstest.reportsPaths=${scanParameters.testResultsPath}/**/*.trx `;
+        `-d:sonar.cs.opencover.reportsPaths=${scanParameters.testResultsPath}${scanParameters.opencoverReportsPaths} ` +
+        `-d:sonar.cs.vstest.reportsPaths=${scanParameters.testResultsPath}${scanParameters.vstestReportsPaths} `;
     if (scanParameters.verbose) {
         command += '-d:sonar.verbose=true';
     }
@@ -64,12 +64,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const artifact_1 = __nccwpck_require__(2605);
 const delay_1 = __nccwpck_require__(9339);
 const core_1 = __nccwpck_require__(2186);
-const maxRetry = 500;
-const retryDurationInSecond = 3;
+const retryDurationInSecond = 2;
 const artifactClient = (0, artifact_1.create)();
 const downloadArtifact = async (artifactName, scanParameters) => {
     (0, core_1.info)(`Waiting for artifact to be uploaded: ${artifactName}`);
-    for (let retryCount = 0; retryCount < maxRetry; retryCount++) {
+    for (let retryTime = 0; retryTime < scanParameters.coverageArtifactPoolingTimeoutSec; retryTime += retryDurationInSecond) {
         try {
             await artifactClient.downloadArtifact(artifactName, scanParameters.testResultsPath);
             (0, core_1.info)(`Artifact: ${artifactName} downloaded`);
@@ -105,7 +104,8 @@ const core_1 = __nccwpck_require__(2186);
 const execute_1 = __nccwpck_require__(3189);
 const fixCoveragePath = async (scanParameters) => {
     (0, core_1.startGroup)(`Fixing code coverage path by replacing ${scanParameters.coverageSolutionRootPath} with ${scanParameters.currentWorkingDir} `);
-    await (0, execute_1.execute)(`find ${scanParameters.testResultsPath} -name *.xml -prune -false -o -type f -exec sed -i "s@${scanParameters.coverageSolutionRootPath}@${scanParameters.currentWorkingDir}@g" "{}" +`);
+    await (0, execute_1.execute)(`find ${scanParameters.testResultsPath} -name *.xml -prune -false -o -type f -exec
+      sed -i "s@${scanParameters.coverageSolutionRootPath}@${scanParameters.currentWorkingDir}@g" "{}" +`);
     (0, core_1.endGroup)();
 };
 exports["default"] = fixCoveragePath;
@@ -145,6 +145,10 @@ const getScanParameters = () => {
         verbose: (0, core_1.getInput)('verbose').toLocaleLowerCase() === 'true',
         dotnetBuildCommand: (0, core_1.getInput)('dotnet-build-command'),
         coverageSolutionRootPath: (0, core_1.getInput)('coverage-solution-root-path'),
+        opencoverReportsPaths: (0, core_1.getInput)('opencover-reports-paths'),
+        vstestReportsPaths: (0, core_1.getInput)('vstest-reports-paths'),
+        sonarScannerVersion: (0, core_1.getInput)('sonar-scanner-version'),
+        coverageArtifactPoolingTimeoutSec: parseInt((0, core_1.getInput)('coverage-artifact-pooling-timeout-sec')),
         testResultArtifacts: (0, core_1.getInput)('test-result-artifacts')
             .split(',')
             .filter(s => s),
@@ -163,9 +167,13 @@ exports["default"] = getScanParameters;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __nccwpck_require__(2186);
 const execute_1 = __nccwpck_require__(3189);
-const installDotnetSonarScanner = async () => {
+const installDotnetSonarScanner = async (scanParameters) => {
     (0, core_1.startGroup)('Installing dotnet sonarscanner tool...');
-    await (0, execute_1.execute)('dotnet tool install --global dotnet-sonarscanner');
+    let installToolCommand = 'dotnet tool install --global dotnet-sonarscanner';
+    if (scanParameters.sonarScannerVersion) {
+        installToolCommand += ` --version ${scanParameters.sonarScannerVersion}`;
+    }
+    await (0, execute_1.execute)(installToolCommand);
     (0, core_1.endGroup)();
 };
 exports["default"] = installDotnetSonarScanner;
@@ -196,7 +204,7 @@ const runEndCommand = async (scanParameters) => {
 const scan = async () => {
     (0, core_1.startGroup)('Sonar Scan started...');
     const scanParameters = (0, getScanParameters_1.default)();
-    await (0, installDotnetSonarScanner_1.default)();
+    await (0, installDotnetSonarScanner_1.default)(scanParameters);
     await (0, caching_1.restoreCachedPlugins)();
     await runBeginCommand(scanParameters);
     await (0, execute_1.execute)(scanParameters.dotnetBuildCommand);
