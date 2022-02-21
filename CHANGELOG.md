@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/compare/v1.1.0...v1.1.1) (2022-02-21)
+
+
+### Bug Fixes
+
+* splitted find&sed command ([e6493a4](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/commit/e6493a47bc123936cca602b14943809fda4cc934))
+
 # [1.1.0](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/compare/v1.0.2...v1.1.0) (2022-02-21)
 
 

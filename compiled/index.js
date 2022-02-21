@@ -104,8 +104,7 @@ const core_1 = __nccwpck_require__(2186);
 const execute_1 = __nccwpck_require__(3189);
 const fixCoveragePath = async (scanParameters) => {
     (0, core_1.startGroup)(`Fixing code coverage path by replacing ${scanParameters.coverageSolutionRootPath} with ${scanParameters.currentWorkingDir} `);
-    await (0, execute_1.execute)(`find ${scanParameters.testResultsPath} -name *.xml -prune -false -o -type f -exec
-      sed -i "s@${scanParameters.coverageSolutionRootPath}@${scanParameters.currentWorkingDir}@g" "{}" +`);
+    await (0, execute_1.execute)(`find ${scanParameters.testResultsPath} -name *.xml -prune -false -o -type f -exec sed -i "s@${scanParameters.coverageSolutionRootPath}@${scanParameters.currentWorkingDir}@g" "{}" +`);
     (0, core_1.endGroup)();
 };
 exports["default"] = fixCoveragePath;
