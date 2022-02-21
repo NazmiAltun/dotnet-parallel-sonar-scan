@@ -13,17 +13,25 @@ inputs:
     required: true
     default: '/app'
   verbose:
-    description: 'Enables verbose flag for sonar scanner'
+    description: 'Enables verbose flag for sonar scanner,in verbose mode logs are too chatty and the action works slow due to heavy output'
     required: true
     default: 'false'
   sonar-host-url:
-    description: 'URL of the sonarqube instance'
+    description: 'URL of the sonarqube/sonarcloud instance'
     required: true
     default: 'https://sonarcloud.io'
   dotnet-build-command:
     description: 'dotnet build command to be executed'
     required: true
     default: 'dotnet build -v q -nologo --configuration Release'
+  opencover-reports-paths:
+    description: 'Path expression that will be set to sonar.cs.opencover.reportsPaths'
+    required: true
+    default: '/**/*.opencover.xml'
+  vstest-reports-paths:
+    description: 'Path expression that will be set to sonar.cs.vstest.reportsPaths'
+    required: true
+    default: '/**/*.trx'
   project-key:
     description: 'Sonarcloud/Sonarqube project key.Default is {context.repo.owner}_{context.repo.name} if not set'
     required: false
@@ -36,6 +44,13 @@ inputs:
   test-result-artifacts:
     description: 'Artifact names of test results that are going to be downloaded. Multiple artifact names should be separated with a comma'
     required: false
+  sonar-scanner-version:
+    description: 'Dotnet Sonar scanner version.Default is latest version'
+    required: false
+  coverage-artifact-pooling-timeout-sec:
+    description: 'Timeout for the pooling of coverage artifacts.Default is 900 seconds'
+    required: true
+    default: '900'
 runs:
   using: node12
   main: compiled/index.js
