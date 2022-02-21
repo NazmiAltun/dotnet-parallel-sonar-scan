@@ -8,8 +8,8 @@ const buildBeginCommand = (scanParameters: ScanParameters): string => {
     `-n:${scanParameters.projectName} ` +
     `-d:sonar.host.url=${scanParameters.sonarHostUrl}  ` +
     `-d:sonar.login=${scanParameters.sonarToken} ` +
-    `-d:sonar.cs.opencover.reportsPaths=${scanParameters.testResultsPath}/**/*.xml ` +
-    `-d:sonar.cs.vstest.reportsPaths=${scanParameters.testResultsPath}/**/*.trx `;
+    `-d:sonar.cs.opencover.reportsPaths=${scanParameters.testResultsPath}${scanParameters.opencoverReportsPaths} ` +
+    `-d:sonar.cs.vstest.reportsPaths=${scanParameters.testResultsPath}${scanParameters.vstestReportsPaths} `;
 
   if (scanParameters.verbose) {
     command += '-d:sonar.verbose=true';

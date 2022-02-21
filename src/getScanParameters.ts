@@ -30,6 +30,10 @@ const getScanParameters = (): ScanParameters => {
     verbose: getInput('verbose').toLocaleLowerCase() === 'true',
     dotnetBuildCommand: getInput('dotnet-build-command'),
     coverageSolutionRootPath: getInput('coverage-solution-root-path'),
+    opencoverReportsPaths: getInput('opencover-reports-paths'),
+    vstestReportsPaths: getInput('vstest-reports-paths'),
+    sonarScannerVersion: getInput('sonar-scanner-version'),
+    coverageArtifactPoolingTimeoutSec: parseInt(getInput('coverage-artifact-pooling-timeout-sec')),
     testResultArtifacts: getInput('test-result-artifacts')
       .split(',')
       .filter(s => s),

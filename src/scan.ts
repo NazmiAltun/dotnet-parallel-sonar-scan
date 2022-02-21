@@ -21,7 +21,7 @@ const scan = async (): Promise<void> => {
   startGroup('Sonar Scan started...');
 
   const scanParameters: ScanParameters = getScanParameters();
-  await installDotnetSonarScanner();
+  await installDotnetSonarScanner(scanParameters);
   await restoreCachedPlugins();
   await runBeginCommand(scanParameters);
   await execute(scanParameters.dotnetBuildCommand);

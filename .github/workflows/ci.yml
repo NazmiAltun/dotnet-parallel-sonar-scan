@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - master
+  pull_request:
+
 jobs:
   ci:
     name: CI
@@ -34,10 +36,12 @@ jobs:
           echo "Building the github action..."
           yarn build
       - name: Compile
+        if: github.ref == 'refs/heads/master'
         run: |
           echo "Compiling the github action..."
           yarn compile
       - name: Release
+        if: github.ref == 'refs/heads/master'
         run: |
           echo "Releasing the github action..."
           npx semantic-release

@@ -7,7 +7,8 @@ const fixCoveragePath = async (scanParameters: ScanParameters): Promise<void> =>
     `Fixing code coverage path by replacing ${scanParameters.coverageSolutionRootPath} with ${scanParameters.currentWorkingDir} `,
   );
   await execute(
-    `find ${scanParameters.testResultsPath} -name *.xml -prune -false -o -type f -exec sed -i "s@${scanParameters.coverageSolutionRootPath}@${scanParameters.currentWorkingDir}@g" "{}" +`,
+    `find ${scanParameters.testResultsPath} -name *.xml -prune -false -o -type f -exec
+      sed -i "s@${scanParameters.coverageSolutionRootPath}@${scanParameters.currentWorkingDir}@g" "{}" +`,
   );
   endGroup();
 };

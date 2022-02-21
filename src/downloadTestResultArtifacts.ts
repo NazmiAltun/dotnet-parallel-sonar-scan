@@ -4,8 +4,7 @@ import { create } from '@actions/artifact';
 import delay from './utils/delay';
 import { info } from '@actions/core';
 
-const maxRetry = 500;
-const retryDurationInSecond = 3;
+const retryDurationInSecond = 2;
 const artifactClient = create();
 
 const downloadArtifact = async (
@@ -14,7 +13,11 @@ const downloadArtifact = async (
 ): Promise<void> => {
   info(`Waiting for artifact to be uploaded: ${artifactName}`);
 
-  for (let retryCount = 0; retryCount < maxRetry; retryCount++) {
+  for (
+    let retryTime = 0;
+    retryTime < scanParameters.coverageArtifactPoolingTimeoutSec;
+    retryTime += retryDurationInSecond
+  ) {
     try {
       await artifactClient.downloadArtifact(artifactName, scanParameters.testResultsPath);
       info(`Artifact: ${artifactName} downloaded`);

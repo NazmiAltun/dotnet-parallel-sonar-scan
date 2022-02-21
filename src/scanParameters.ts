@@ -10,6 +10,9 @@ interface ScanParameters {
   readonly testResultsPath: string;
   readonly currentWorkingDir: string;
   readonly coverageSolutionRootPath: string;
+  readonly opencoverReportsPaths: string;
+  readonly vstestReportsPaths: string;
+  readonly sonarScannerVersion: string;
+  readonly coverageArtifactPoolingTimeoutSec: number;
 }
-
 export default ScanParameters;
