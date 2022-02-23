@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/compare/v1.1.1...v1.1.2) (2022-02-23)
+
+
+### Bug Fixes
+
+* dependencies are reorganized ([72b0301](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/commit/72b0301aff96de40064c3fdec5e522afbc1c676a))
+
 ## [1.1.1](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/compare/v1.1.0...v1.1.1) (2022-02-21)
 
 
