@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/compare/v1.1.2...v1.1.3) (2022-02-23)
+
+
+### Bug Fixes
+
+* Remove compiled folder from gitignore ([55e18b4](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/commit/55e18b4820becd34580477353fb0e9dc5d5bca7b))
+
 ## [1.1.2](https://github.com/NazmiAltun/dotnet-parallel-sonar-scan/compare/v1.1.1...v1.1.2) (2022-02-23)
 
 
