@@ -1,12 +1,11 @@
 import { cachePlugins, restoreCachedPlugins } from './caching';
-import { endGroup, startGroup } from '@actions/core';
-
 import ScanParameters from './scanParameters';
 import buildBeginCommand from './buildBeginCommand';
 import downloadTestResultArtifacts from './downloadTestResultArtifacts';
 import { execute } from './utils/execute';
 import fixCoveragePath from './fixCoveragePath';
 import getScanParameters from './getScanParameters';
+import { info } from '@actions/core';
 import installDotnetSonarScanner from './installDotnetSonarScanner';
 
 const runBeginCommand = async (scanParameters: ScanParameters): Promise<void> => {
@@ -18,7 +17,7 @@ const runEndCommand = async (scanParameters: ScanParameters): Promise<void> => {
 };
 
 const scan = async (): Promise<void> => {
-  startGroup('Sonar Scan started...');
+  info('Sonar Scan started...');
 
   const scanParameters: ScanParameters = getScanParameters();
   await installDotnetSonarScanner(scanParameters);
@@ -29,8 +28,6 @@ const scan = async (): Promise<void> => {
   await fixCoveragePath(scanParameters);
   await runEndCommand(scanParameters);
   await cachePlugins();
-
-  endGroup();
 };
 
 export default scan;
