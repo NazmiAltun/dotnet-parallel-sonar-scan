@@ -14,7 +14,7 @@ See [action.yml](action.yml) and [Sample Repo](https://github.com/NazmiAltun/dot
 ```yml
 ....
   - name: Scan
-    uses: NazmiAltun/dotnet-parallel-sonar-scan@v1.0.0
+    uses: NazmiAltun/dotnet-parallel-sonar-scan@v1
     with:
       sonar-token: ${{ secrets.SONAR_TOKEN }}  #SONAR_TOKEN needs to be set in the secrets
       test-result-artifacts: unit-test-results,integration-test-results
